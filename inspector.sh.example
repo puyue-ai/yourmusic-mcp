@@ -1,0 +1,20 @@
+#!/bin/bash
+# MCP Inspector 启动脚本示例
+# 使用前请复制此文件并填入你的真实 API 密钥
+
+# 设置环境变量
+export MUSICMCP_API_KEY="your-api-key-here"  # 从 https://www.musicmcp.ai 获取
+export MUSICMCP_API_URL="https://www.musicmcp.ai/api"
+export TIME_OUT_SECONDS="600"
+
+echo "🎵 启动 MusicMCP.AI MCP Inspector..."
+echo "================================================"
+echo "项目目录: $(pwd)"
+echo "API URL: $MUSICMCP_API_URL"
+echo "Timeout: $TIME_OUT_SECONDS seconds"
+echo "================================================"
+echo "正在启动 MCP 服务器并连接 Inspector..."
+echo ""
+
+# 启动 Inspector（使用本地 Python 模块）
+npx @modelcontextprotocol/inspector python -m musicmcp_ai_mcp.api

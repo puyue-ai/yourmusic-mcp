@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🎵 Installing YourMusic.Fun MCP Server..."
+echo "🎵 Installing MusicMCP.AI MCP Server..."
 echo "=========================================="
 
 # 检查Python版本
@@ -32,7 +32,7 @@ fi
 echo "✅ Dependencies installed successfully"
 
 # 安装MCP服务器
-echo "🚀 Installing YourMusic.Fun MCP Server..."
+echo "🚀 Installing MusicMCP.AI MCP Server..."
 pip3 install -e .
 
 if [ $? -ne 0 ]; then
@@ -45,14 +45,14 @@ echo "🎉 Installation completed successfully!"
 echo "======================================"
 echo ""
 echo "📋 Next steps:"
-echo "1. Log in to the official website: https://app.yourmusic.fun, and contact customer support to obtain an API Key."
-echo "2. Set environment variable: export YOURMUSIC_API_KEY='your-api-key-here'"
+echo "1. Log in to the official website: https://app.musicmcp.ai, and contact customer support to obtain an API Key."
+echo "2. Set environment variable: export MUSICMCP_API_KEY='your-api-key-here'"
 echo "3. Copy configuration from README.md examples to Claude Desktop"
 echo "4. Restart Claude Desktop"
 echo ""
 echo "🧪 To test the installation:"
-echo "python3 -m yourmusic_fun_mcp.api"
+echo "python3 -m musicmcp_ai_mcp.api"
 echo ""
 echo "📚 For more information, see README.md"
 echo ""
-echo "🎵 Happy music making with YourMusic.Fun!"
+echo "🎵 Happy music making with MusicMCP.AI!"

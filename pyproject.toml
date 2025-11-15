@@ -1,9 +1,9 @@
 [project]
-name = "yourmusic-fun-mcp"
-version = "1.0.0" 
-description = "The MCP server of YourMusic.Fun - AI Music Generation Platform"
+name = "aimusic-mcp"
+version = "1.0.1"
+description = "The MCP server of MusicMCP.AI - AI Music Generation Platform"
 authors = [
-    { name = "YourMusic.Fun Team", email = "yourmusicfun@163.com" }
+    { name = "MusicMCP.AI Team", email = "support@musicmcp.ai" }
 ]
 readme = "README.md"
 classifiers = [
@@ -18,7 +18,8 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 keywords = [
-    "yourmusic",
+    "aimusic",
+    "musicmcp",
     "mcp",
     "music",
     "song",
@@ -29,18 +30,15 @@ keywords = [
 requires-python = ">=3.10"
 dependencies = [
     "mcp[cli]>=1.6.0",
-    "sounddevice==0.5.1",
-    "soundfile==0.13.1",
-    "requests==2.31.0",
     "httpx>=0.24.0"
 ]
 
 [project.scripts]
-yourmusic-fun-mcp = "yourmusic_fun_mcp.api:main"
+aimusic-mcp = "musicmcp_ai_mcp.api:main"
 
 [project.urls]
-Homepage = "https://yourmusic.fun"
-Repository = "https://github.com/amCharlie/yourmusic-mcp"
+Homepage = "https://www.musicmcp.ai"
+Repository = "https://github.com/ai-music-repo/aimusic-mcp-tool"
 
 [build-system]
 requires = ["setuptools>=45", "wheel"]

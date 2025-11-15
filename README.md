@@ -1,150 +1,218 @@
-# YourMusic.Fun MCP Server
+<div align="center">
 
-<div class="title-block" style="text-align: center;" align="center">
-
-# 🎵 YourMusic.Fun MCP Server
+# 🎵 MusicMCP.AI MCP Server
 
 **AI-Powered Music Generation with Model Context Protocol**
 
-</div>
+Official MusicMCP.AI Model Context Protocol (MCP) server that enables seamless interaction with our advanced AI music generation platform. This server allows MCP clients like [Claude Desktop](https://www.anthropic.com/claude), [OpenAI Agents](https://github.com/openai/openai-agents-python) and others to generate AI music through natural language commands.
 
-<p align="center">
-  Official YourMusic.Fun Model Context Protocol (MCP) server that enables seamless interaction with our advanced AI music generation platform. This server allows MCP clients like <a href="https://www.anthropic.com/claude">Claude Desktop</a>, <a href="https://github.com/openai/openai-agents-python">OpenAI Agents</a> and others to generate and play AI-generated music through natural language commands.
-</p>
+</div>
 
 ## ✨ Features
 
-- **🎼 AI Music Generation**: Generate songs based on text prompts using YourMusic.Fun's state-of-the-art AI models
+- **🎼 AI Music Generation**: Generate songs based on text prompts using MusicMCP.AI's state-of-the-art AI models
 - **🎵 Dual Generation Modes**: Support for both inspiration mode and custom mode
-- **🔊 Audio Playback**: Play generated audio files directly in your MCP client
-- **📁 Flexible Output**: Save generated music to custom directories or default to desktop
-- **🤖 Multiple Models**: Support for different AI models including chirp-4.5+ and chirp-4.5
+- **🔗 Direct Download Links**: Get direct download URLs for generated music
 - **🎹 Instrumental Options**: Generate instrumental-only music or full songs with vocals
-- **⚡ Async Processing**: Efficient asynchronous handling of long-running music generation tasks
+- **✅ API Key Validation**: Check your API key validity and remaining credits
+- **🏥 Health Monitoring**: Check API service health status
+- **📊 API Information**: Get detailed information about available endpoints and costs
 
 ## 🚀 Quickstart with Claude Desktop
 
-1. **Get Your API Key**: Obtain your API key from [YourMusic.Fun Platform](https://app.yourmusic.fun)
+1. **Get Your API Key**: Obtain your API key from [MusicMCP.AI Platform](https://www.musicmcp.ai)
 2. **Install uv**: Install the Python package manager with `curl -LsSf https://astral.sh/uv/install.sh | sh`
 3. **Configure Claude**: Go to Claude > Settings > Developer > Edit Config > claude_desktop_config.json and add:
 
 ```json
 {
     "mcpServers": {
-        "YourMusic.Fun": {
+        "MusicMCP.AI": {
             "command": "uvx",
             "args": [
-                "yourmusic-fun-mcp"
+                "aimusic-mcp"
             ],
             "env": {
-                "YOURMUSIC_API_KEY": "<insert-your-api-key-here>",
-                "YOURMUSIC_API_URL": "https://app.yourmusic.fun",
-                "TIME_OUT_SECONDS": "600",
-                "YOURMUSIC_MCP_BASE_PATH": "~/Desktop"
+                "MUSICMCP_API_KEY": "<insert-your-api-key-here>",
+                "MUSICMCP_API_URL": "https://www.musicmcp.ai/api",
+                "TIME_OUT_SECONDS": "600"
             }
         }
     }
 }
 ```
 
-4. **Restart Claude**: Restart the Claude app and you'll see 3 MCP tools available, indicating successful loading
+4. **Restart Claude**: Restart the Claude app and you'll see **5 MCP tools** available, indicating successful loading
 
 ## ⚙️ Environment Variables
 
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
-| `YOURMUSIC_API_KEY` | Your YourMusic.Fun API key | - | ✅ Yes |
-| `YOURMUSIC_API_URL` | YourMusic.Fun API base URL | `https://app.yourmusic.fun` | ❌ No |
+| `MUSICMCP_API_KEY` | Your MusicMCP.AI API key | - | ✅ Yes |
+| `MUSICMCP_API_URL` | MusicMCP.AI API base URL | `https://www.musicmcp.ai/api` | ❌ No |
 | `TIME_OUT_SECONDS` | Timeout for music generation in seconds | `600` (10 min) | ❌ No |
-| `YOURMUSIC_MCP_BASE_PATH` | Base path for file operations | `~/Desktop` | ❌ No |
 
 ## 🛠️ Available Tools
 
-### 1. 🎼 Generate Prompt Song (灵感模式)
+### 1. 🎼 Generate Prompt Song (Inspiration Mode)
 Generate AI music based on simple text descriptions. AI automatically creates title, lyrics, and style.
+
+**Cost**: 5 credits per generation (creates 2 songs)
 
 **Parameters:**
 - `prompt` (str): Simple description of the music theme (1-1200 characters)
-- `instrumental` (bool, optional): Whether to generate instrumental music only (default: false)
-- `model_type` (str, optional): AI model to use (default: 'chirp-v3-5')
-- `output_directory` (str, optional): Directory to save the generated music (default: desktop)
+- `instrumental` (bool): Whether to generate instrumental music only
+- `style` (str, optional): Music style (e.g., "ambient", "pop", "rock")
 
 **Example Prompts:**
 ```
-"帮我生成一首关于和平早晨的歌"
-"想要一首表达思念的歌曲"
-"创作一首关于友谊的音乐"
+"Help me generate a song about a peaceful morning"
+"Want a song that expresses longing"
+"Create music about friendship"
 ```
 
-**Output Files:** `标题1.mp3`, `标题2.mp3` (AI-generated titles)
+**Output Example:**
+```
+✅ Song 1 generated successfully!
 
-### 2. 🎵 Generate Custom Song (自定义模式)
+📌 Title: Peaceful Morning
+🆔 ID: c7630638-b8ba-4984-876b-6dd7e6eeb796
+🔗 Download URL: https://cdn.musicmcp.ai/songs/abc123.mp3
+
+You can download or play the audio from the URL above.
+
+✅ Song 2 generated successfully!
+
+📌 Title: Morning Peace
+🆔 ID: d8741749-c9cb-5095-987c-7ee8f7ffb907
+🔗 Download URL: https://cdn.musicmcp.ai/songs/def456.mp3
+
+You can download or play the audio from the URL above.
+```
+
+### 2. 🎵 Generate Custom Song (Custom Mode)
 Generate AI music with specific lyrics, title, and style parameters that you provide.
+
+**Cost**: 5 credits per generation (creates 2 songs)
 
 **Parameters:**
 - `title` (str): Song title (required)
-- `lyric` (str): Complete lyrics content (required)
-- `model_type` (str, optional): AI model to use (default: 'chirp-v4')
+- `instrumental` (bool): Whether to generate instrumental music only (required)
+- `lyric` (str, optional): Complete lyrics content (not required when instrumental is true)
 - `tags` (str, optional): Music style tags (e.g., 'pop', 'rock', 'folk')
-- `instrumental` (bool, optional): Whether to generate instrumental music only (default: false)
-- `vocal_gender` (str, optional): Vocal gender - 'm' for male, 'f' for female (default: 'm')
-- `weirdness_constraint` (float, optional): Weirdness constraint 0.0-1.0 (default: 0.6)
-- `style_weight` (float, optional): Style weight 0.0-1.0 (default: 0.7)
-- `output_directory` (str, optional): Directory to save the generated music (default: desktop)
 
 **Example Usage:**
 ```
-请帮我生成一首歌
-歌名：蝉蜕的夏天
-歌词：[完整歌词内容]
-使用男声，风格使用民谣
+Please help me generate a song:
+Title: Summer Dreams
+Lyrics: [complete lyrics content]
+Style: folk
+
+Or for instrumental:
+Title: Summer Breeze
+Instrumental: yes
+Style: ambient
 ```
 
-**Output Files:** `标题1.mp3`, `标题2.mp3` (using your specified title)
+**Output Example:**
+```
+✅ Custom song 'Summer Dreams' (version 1) generated successfully!
 
-### 3. 🔊 Play Audio
-Play an audio file directly in your MCP client with high-quality audio support.
+📌 Title: Summer Dreams
+🆔 ID: d1ed75a7-3e0b-42c6-b2be-7631204074fe
+🔗 Download URL: https://cdn.musicmcp.ai/songs/xyz789.mp3
 
-**Parameters:**
-- `input_file_path` (str): Path to the audio file to play
+You can download or play the audio from the URL above.
 
-**Supported Formats:** WAV, MP3, M4A, AAC, OGG, FLAC, MP4, AVI, MOV, WMV
+✅ Custom song 'Summer Dreams' (version 2) generated successfully!
+
+📌 Title: Summer Dreams
+🆔 ID: e2fe86b8-4f1c-53d7-c3cf-8742305185gf
+🔗 Download URL: https://cdn.musicmcp.ai/songs/uvw012.mp3
+
+You can download or play the audio from the URL above.
+```
+
+### 3. ✅ Validate API Key
+Check if your API key is valid and see your remaining credits.
+
+**Cost**: Free
+
+**Example Usage:**
+```
+"Validate my API key"
+"Check my credit balance"
+```
+
+### 4. 🏥 Check API Health
+Monitor the health status of the MusicMCP.AI API service.
+
+**Cost**: Free
+
+**Example Usage:**
+```
+"Check API service status"
+```
+
+### 5. 📊 Get API Info
+Get detailed information about the API including rate limits and documentation.
+
+**Cost**: Free
+
+**Example Usage:**
+```
+"Get API information"
+```
+
+## 💰 Credits & Pricing
+
+| Operation | Credits Cost | Output |
+|-----------|-------------|--------|
+| Generate Inspiration Music | 5 credits | 2 songs |
+| Generate Custom Music | 5 credits | 2 songs |
+| Query Music Status | 0 credits (Free) | - |
+| Validate API Key | 0 credits (Free) | - |
+| API Health Check | 0 credits (Free) | - |
+| Get API Info | 0 credits (Free) | - |
 
 ## 💡 Example Usage
 
-⚠️ **Note**: YourMusic.Fun credits are required to use the music generation tools.
+⚠️ **Note**: MusicMCP.AI credits are required to use the music generation tools.
 
 ### Try asking Claude:
 
-#### **灵感模式 (Inspiration Mode):**
-- "请帮我生成一首关于和平早晨的歌"
-- "想要一首表达思念的歌曲"
-- "创作一首关于友谊的音乐"
+#### **Inspiration Mode:**
+- "Please help me generate a song about a peaceful morning"
+- "Want a song that expresses longing"
+- "Create music about friendship"
+- "Generate an ambient music track"
 
-#### **自定义模式 (Custom Mode):**
-- "请帮我生成一首歌，歌名：蝉蜕的夏天，歌词：[完整歌词]，使用男声，风格使用民谣"
-- "创作一首歌，标题：春天的约定，歌词：[完整歌词]，女声，流行风格"
+#### **Custom Mode:**
+- "Please help me generate a song, Title: Summer Dreams, Lyrics: [complete lyrics], Style: folk"
+- "Create a song, Title: Spring Promise, Lyrics: [complete lyrics], Pop style"
+- "Generate an instrumental song, Title: Ocean Breeze, Style: ambient"
 
-#### **音频播放:**
-- "播放我桌面上的歌曲文件"
-- "播放刚生成的音乐"
+#### **Management Functions:**
+- "Validate my API key"
+- "Check how many credits I have left"
+- "Check API service status"
 
 ## 📦 Installation
 
 ### Using uv (Recommended)
 ```bash
-uv add yourmusic-fun-mcp
+uvx aimusic-mcp
 ```
 
 ### Using pip
 ```bash
-pip install yourmusic-fun-mcp
+pip install aimusic-mcp
 ```
 
 ### From Source
 ```bash
-git clone https://github.com/yourmusic-fun/yourmusic-fun-mcp.git
-cd yourmusic-fun-mcp
+git clone https://github.com/ai-music-repo/aimusic-mcp-tool.git
+cd aimusic-mcp-tool
 pip install -e .
 ```
 
@@ -156,33 +224,41 @@ chmod +x install.sh
 
 ## 🔌 API Integration
 
-This MCP server integrates with YourMusic.Fun's RESTful API:
+This MCP server integrates with MusicMCP.AI's RESTful API:
 
-- **`POST /generate/prompt`**: Create music generation task (inspiration mode)
-- **`POST /generate/custom`**: Create custom music generation task
-- **`POST /generate/status`**: Query task status and progress
+- **`POST /music/generate/inspiration`**: Create music generation task (inspiration mode)
+- **`POST /music/generate/custom`**: Create custom music generation task
+- **`POST /music/generate/query`**: Query music status (batch query supported)
+- **`POST /validate`**: Validate API key and check credits
+- **`GET /health`**: Check API service health
+- **`GET /info`**: Get API information
 
-The server handles the complete workflow:
-1. Submit generation request
-2. Poll for completion status
-3. Download generated audio files
-4. Save to specified directory with intelligent naming
+### API Workflow
+1. Submit generation request with API key in header (`api-key: your-key`)
+2. Receive song IDs in response
+3. Poll `/music/generate/query` for completion status
+4. Receive download URLs for generated music
+5. User can download or play music directly from URLs
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-1. **API Key Error**: Ensure `YOURMUSIC_API_KEY` is set correctly
-2. **Timeout Errors**: Increase `TIME_OUT_SECONDS` if music generation takes longer
-3. **File Permission Errors**: Check that the output directory is writable
-4. **Audio Playback Issues**: Install required audio libraries: `pip install sounddevice soundfile`
+1. **API Key Error**: Ensure `MUSICMCP_API_KEY` is set correctly
+   - Use the `validate_api_key` tool to check your key
+
+2. **Insufficient Credits (402 Error)**: You don't have enough credits
+   - Check your balance at https://www.musicmcp.ai
+   - Recharge your account
+
+3. **Timeout Errors**: Increase `TIME_OUT_SECONDS` if music generation takes longer
 
 ### Logs
 
 When running with Claude Desktop, logs can be found at:
 
-- **Windows**: `%APPDATA%\Claude\logs\mcp-server-YourMusic.Fun.log`
-- **macOS**: `~/Library/Logs/Claude/mcp-server-YourMusic.Fun.log`
+- **Windows**: `%APPDATA%\Claude\logs\mcp-server-MusicMCP.AI.log`
+- **macOS**: `~/Library/Logs/Claude/mcp-server-MusicMCP.AI.log`
 
 ## 🧪 Development
 
@@ -193,16 +269,23 @@ pytest tests/
 
 ### Local Development
 ```bash
-python -m yourmusic_fun_mcp.api
+python -m musicmcp_ai_mcp.api
 ```
 
 ### Code Structure
 ```
-yourmusic_fun_mcp/
+musicmcp_ai_mcp/
 ├── __init__.py          # Package initialization
 ├── __main__.py          # CLI entry point
-└── api.py               # Core MCP server implementation
+└── api.py               # Core MCP server implementation (430 lines)
 ```
+
+## 🔗 Links
+
+- **Platform**: https://www.musicmcp.ai
+- **Documentation**: https://docs.aimusicmcp.com
+- **GitHub**: https://github.com/ai-music-repo/aimusic-mcp-tool
+- **Issues**: https://github.com/ai-music-repo/aimusic-mcp-tool/issues
 
 ## 📄 License
 
@@ -212,7 +295,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Made with ❤️ by the YourMusic.Fun Team**
+**Made with ❤️ by the MusicMCP.AI Team**
 
 *Transform your ideas into music with AI*
 
