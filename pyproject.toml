@@ -1,6 +1,6 @@
 [project]
 name = "aimusic-mcp"
-version = "1.0.1"
+version = "1.0.2"
 description = "The MCP server of MusicMCP.AI - AI Music Generation Platform"
 authors = [
     { name = "MusicMCP.AI Team", email = "support@musicmcp.ai" }
