@@ -33,12 +33,19 @@ async def test_generate_prompt_song():
         assert isinstance(result, list), "Result should be a list"
         assert len(result) > 0, "Should return at least one song"
 
-        # 验证返回包含 URL
+        # 验证返回包含完整的元数据字段
         for item in result:
             text = item.text
-            assert "Download URL:" in text, "Result should contain download URL"
-            assert "ID:" in text, "Result should contain song ID"
+            # 核心字段
             assert "Title:" in text, "Result should contain song title"
+            assert "ID:" in text, "Result should contain song ID"
+            assert "Download URL:" in text, "Result should contain download URL"
+            # 新增的元数据字段
+            assert "Cover Image:" in text, "Result should contain cover image"
+            assert "Duration:" in text, "Result should contain duration"
+            assert "Style Tags:" in text, "Result should contain style tags"
+            assert "Instrumental:" in text, "Result should contain instrumental status"
+            assert "Created:" in text, "Result should contain creation timestamp"
 
         print("✅ Prompt song generation test passed")
         print(f"   Generated {len(result)} songs")
@@ -72,11 +79,22 @@ async def test_generate_custom_song():
         assert isinstance(result, list), "Result should be a list"
         assert len(result) > 0, "Should return at least one song"
 
-        # 验证返回包含 URL
+        # 验证返回包含完整的元数据字段
         for item in result:
             text = item.text
+            # 核心字段
             assert "Download URL:" in text, "Result should contain download URL"
             assert "Test Song" in text or "ID:" in text, "Result should contain song info"
+            assert "Title:" in text, "Result should contain song title"
+            # 新增的元数据字段
+            assert "Cover Image:" in text, "Result should contain cover image"
+            assert "Duration:" in text, "Result should contain duration"
+            assert "Style Tags:" in text, "Result should contain style tags"
+            assert "Instrumental:" in text, "Result should contain instrumental status"
+            assert "Created:" in text, "Result should contain creation timestamp"
+            # 非器乐曲应该包含歌词
+            if "Instrumental: No" in text:
+                assert "Lyrics Preview:" in text, "Non-instrumental songs should contain lyrics preview"
 
         print("✅ Custom song generation test passed")
         print(f"   Generated {len(result)} songs")
@@ -104,7 +122,9 @@ async def test_validate_api_key():
         assert hasattr(result, 'text'), "Result should have text attribute"
 
         text = result.text
-        assert "API key" in text, "Result should contain API key status"
+        assert "API key" in text or "valid" in text.lower(), "Result should contain API key validation status"
+        # 应该包含积分信息
+        assert "credits" in text.lower() or "credit" in text.lower(), "Result should contain credits information"
 
         print("✅ API key validation test passed")
         print(f"   {text}")

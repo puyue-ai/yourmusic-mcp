@@ -60,10 +60,12 @@ async def test_query_song_task():
 
                 # 只在成功时显示音频信息
                 if song_status == 1:
-                    audio_url = song.get('audioUrl', 'N/A')
-                    if audio_url != 'N/A':
-                        print(f"   音频 URL: {audio_url[:60]}...")
+                    song_url = song.get('songUrl', 'N/A')
+                    if song_url != 'N/A':
+                        print(f"   歌曲 URL: {song_url[:60]}...")
                     print(f"   时长: {song.get('duration', 'N/A')} 秒")
+                    print(f"   封面: {song.get('imgUrl', 'N/A')[:60]}..." if song.get('imgUrl') else "   封面: N/A")
+                    print(f"   风格标签: {song.get('tags', 'N/A')}")
 
                 print()
 
