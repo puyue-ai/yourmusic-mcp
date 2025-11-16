@@ -78,6 +78,15 @@ Generate AI music based on simple text descriptions. AI automatically creates ti
 📌 Title: Peaceful Morning
 🆔 ID: c7630638-b8ba-4984-876b-6dd7e6eeb796
 🔗 Download URL: https://cdn.musicmcp.ai/songs/abc123.mp3
+🖼️  Cover Image: https://cdn.musicmcp.ai/images/abc123.jpg
+⏱️  Duration: 180s
+🎵 Style Tags: ambient, meditation, peaceful
+🎹 Instrumental: No
+📅 Created: 2025-01-15T10:30:45.123Z
+📝 Lyrics Preview:
+[Verse]
+Gentle sunlight fills the room
+Morning dew and sweet perfume...
 
 You can download or play the audio from the URL above.
 
@@ -86,6 +95,15 @@ You can download or play the audio from the URL above.
 📌 Title: Morning Peace
 🆔 ID: d8741749-c9cb-5095-987c-7ee8f7ffb907
 🔗 Download URL: https://cdn.musicmcp.ai/songs/def456.mp3
+🖼️  Cover Image: https://cdn.musicmcp.ai/images/def456.jpg
+⏱️  Duration: 213s
+🎵 Style Tags: ambient, meditation, peaceful
+🎹 Instrumental: No
+📅 Created: 2025-01-15T10:30:45.126Z
+📝 Lyrics Preview:
+[Verse]
+Calm and quiet, soft and still
+Peaceful thoughts upon the hill...
 
 You can download or play the audio from the URL above.
 ```
@@ -121,6 +139,15 @@ Style: ambient
 📌 Title: Summer Dreams
 🆔 ID: d1ed75a7-3e0b-42c6-b2be-7631204074fe
 🔗 Download URL: https://cdn.musicmcp.ai/songs/xyz789.mp3
+🖼️  Cover Image: https://cdn.musicmcp.ai/images/xyz789.jpg
+⏱️  Duration: 195s
+🎵 Style Tags: folk, acoustic, summer
+🎹 Instrumental: No
+📅 Created: 2025-01-15T11:45:30.456Z
+📝 Lyrics Preview:
+[Verse]
+Walking through the summer fields
+Golden wheat and nature's yields...
 
 You can download or play the audio from the URL above.
 
@@ -129,6 +156,15 @@ You can download or play the audio from the URL above.
 📌 Title: Summer Dreams
 🆔 ID: e2fe86b8-4f1c-53d7-c3cf-8742305185gf
 🔗 Download URL: https://cdn.musicmcp.ai/songs/uvw012.mp3
+🖼️  Cover Image: https://cdn.musicmcp.ai/images/uvw012.jpg
+⏱️  Duration: 203s
+🎵 Style Tags: folk, acoustic, summer
+🎹 Instrumental: No
+📅 Created: 2025-01-15T11:45:30.459Z
+📝 Lyrics Preview:
+[Verse]
+Walking through the summer fields
+Golden wheat and nature's yields...
 
 You can download or play the audio from the URL above.
 ```

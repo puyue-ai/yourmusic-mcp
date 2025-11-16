@@ -111,16 +111,41 @@ async def generate_prompt_song(
             song_title = song.get("songName", f"Song {i}").strip()
             song_id = song.get("id", "N/A")
 
+            # Additional fields
+            duration = song.get("duration", 0)
+            tags = song.get("tags", "")
+            img_url = song.get("imgUrl", "")
+            lyric = song.get("lyric", "")
+            instrumental = song.get("instrumental", 0)
+            created_at = song.get("createdAt", "")
+
             if not song_url:
                 continue
+
+            # Format duration
+            duration_str = f"{duration}s" if duration else "N/A"
+
+            # Format instrumental status
+            is_instrumental = "Yes" if instrumental == 1 else "No"
 
             text = f"""✅ Song {i} generated successfully!
 
 📌 Title: {song_title}
 🆔 ID: {song_id}
 🔗 Download URL: {song_url}
+🖼️  Cover Image: {img_url if img_url else "N/A"}
+⏱️  Duration: {duration_str}
+🎵 Style Tags: {tags if tags else "N/A"}
+🎹 Instrumental: {is_instrumental}
+📅 Created: {created_at if created_at else "N/A"}"""
 
-You can download or play the audio from the URL above."""
+            # Add lyrics if available and not instrumental
+            if lyric and instrumental == 0:
+                # Truncate lyrics if too long
+                lyric_preview = lyric[:200] + "..." if len(lyric) > 200 else lyric
+                text += f"\n📝 Lyrics Preview:\n{lyric_preview}"
+
+            text += "\n\nYou can download or play the audio from the URL above."
 
             results.append(TextContent(type="text", text=text))
 
@@ -244,16 +269,41 @@ async def generate_custom_song(
             song_title = song.get("songName", title).strip()
             song_id = song.get("id", "N/A")
 
+            # Additional fields
+            duration = song.get("duration", 0)
+            tags = song.get("tags", "")
+            img_url = song.get("imgUrl", "")
+            lyric = song.get("lyric", "")
+            instrumental_flag = song.get("instrumental", 0)
+            created_at = song.get("createdAt", "")
+
             if not song_url:
                 continue
+
+            # Format duration
+            duration_str = f"{duration}s" if duration else "N/A"
+
+            # Format instrumental status
+            is_instrumental = "Yes" if instrumental_flag == 1 else "No"
 
             text = f"""✅ Custom song '{title}' (version {i}) generated successfully!
 
 📌 Title: {song_title}
 🆔 ID: {song_id}
 🔗 Download URL: {song_url}
+🖼️  Cover Image: {img_url if img_url else "N/A"}
+⏱️  Duration: {duration_str}
+🎵 Style Tags: {tags if tags else "N/A"}
+🎹 Instrumental: {is_instrumental}
+📅 Created: {created_at if created_at else "N/A"}"""
 
-You can download or play the audio from the URL above."""
+            # Add lyrics if available and not instrumental
+            if lyric and instrumental_flag == 0:
+                # Truncate lyrics if too long
+                lyric_preview = lyric[:200] + "..." if len(lyric) > 200 else lyric
+                text += f"\n📝 Lyrics Preview:\n{lyric_preview}"
+
+            text += "\n\nYou can download or play the audio from the URL above."
 
             results.append(TextContent(type="text", text=text))
 
