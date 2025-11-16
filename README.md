@@ -233,12 +233,42 @@ This MCP server integrates with MusicMCP.AI's RESTful API:
 - **`GET /health`**: Check API service health
 - **`GET /info`**: Get API information
 
-### API Workflow
-1. Submit generation request with API key in header (`api-key: your-key`)
-2. Receive song IDs in response
-3. Poll `/music/generate/query` for completion status
-4. Receive download URLs for generated music
-5. User can download or play music directly from URLs
+### 🔄 Async API Workflow
+
+Music generation is **asynchronous**. The MCP server handles this automatically:
+
+**Step 1: Submit Generation Request**
+```bash
+POST /music/generate/inspiration or /music/generate/custom
+→ Returns: {"code": 200, "data": {"ids": ["id1", "id2"]}}
+```
+
+**Step 2: Automatic Polling (handled internally by MCP)**
+```bash
+POST /music/generate/query with {"ids": ["id1", "id2"]}
+→ Polls every 2 seconds until status = 1 (completed)
+→ Song status: 0 = Failed, 1 = Completed, 2 = In Progress
+```
+
+**Step 3: Return Complete Song Information**
+```
+Once all songs are completed, returns full details:
+- songName, songUrl, imgUrl, duration, tags, etc.
+```
+
+**Behind the Scenes:**
+1. User calls `generate_prompt_song()` or `generate_custom_song()`
+2. MCP sends generation request → receives 2 song IDs
+3. MCP automatically polls `/music/generate/query` every 2 seconds
+4. When all songs complete (status=1), returns download URLs
+5. Default timeout: 10 minutes (configurable via `TIME_OUT_SECONDS`)
+
+**Important Notes:**
+- ⏱️ Generation typically takes 2-5 minutes per song
+- 🔁 The MCP server handles all polling automatically
+- 🎵 Each generation always creates 2 song variations
+- 💰 Credits (5) are deducted when generation request succeeds
+- ⚠️ If generation fails, credits are NOT consumed
 
 ## 🐛 Troubleshooting
 
