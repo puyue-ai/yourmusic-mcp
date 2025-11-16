@@ -139,8 +139,8 @@ Style: ambient
 📌 Title: Summer Dreams
 🆔 ID: d1ed75a7-3e0b-42c6-b2be-7631204074fe
 🔗 Download URL: https://cdn.musicmcp.ai/songs/xyz789.mp3
-🖼️  Cover Image: https://cdn.musicmcp.ai/images/xyz789.jpg
-⏱️  Duration: 195s
+🖼️ Cover Image: https://cdn.musicmcp.ai/images/xyz789.jpg
+⏱️ Duration: 195s
 🎵 Style Tags: folk, acoustic, summer
 🎹 Instrumental: No
 📅 Created: 2025-01-15T11:45:30.456Z
@@ -156,8 +156,8 @@ You can download or play the audio from the URL above.
 📌 Title: Summer Dreams
 🆔 ID: e2fe86b8-4f1c-53d7-c3cf-8742305185gf
 🔗 Download URL: https://cdn.musicmcp.ai/songs/uvw012.mp3
-🖼️  Cover Image: https://cdn.musicmcp.ai/images/uvw012.jpg
-⏱️  Duration: 203s
+🖼️ Cover Image: https://cdn.musicmcp.ai/images/uvw012.jpg
+⏱️ Duration: 203s
 🎵 Style Tags: folk, acoustic, summer
 🎹 Instrumental: No
 📅 Created: 2025-01-15T11:45:30.459Z
@@ -349,7 +349,7 @@ musicmcp_ai_mcp/
 ## 🔗 Links
 
 - **Platform**: https://www.musicmcp.ai
-- **Documentation**: https://docs.aimusicmcp.com
+- **Documentation**: https://www.musicmcp.ai/docs
 - **GitHub**: https://github.com/ai-music-repo/aimusic-mcp-tool
 - **Issues**: https://github.com/ai-music-repo/aimusic-mcp-tool/issues
 
